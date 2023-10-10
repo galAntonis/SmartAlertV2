@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "180322079581",
+    "project_id": "smartalertv2-fd029",
+    "storage_bucket": "smartalertv2-fd029.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180322079581:android:f76031a79bfed534188eb4",
+        "android_client_info": {
+          "package_name": "com.galeos.smartalertv2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180322079581-raj4m2501vrfvl5l3snjc2e3ea0hd0vs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6B4MBQ_22cY45fyk1ZEdlH5Cb4mo-FMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180322079581-raj4m2501vrfvl5l3snjc2e3ea0hd0vs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
