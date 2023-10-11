@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SmartAlert</string>
+    <string name="welcome_to_smartalert">Smart Alert</string>
+    <string name="user">Χρήστης</string>
+    <string name="employee">Υπάλληλος</string>
 </resources>
