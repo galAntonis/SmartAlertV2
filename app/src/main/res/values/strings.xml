@@ -3,4 +3,6 @@
     <string name="welcome_to_smartalert">Smart Alert</string>
     <string name="user">User</string>
     <string name="employee">Employee</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="password">Password</string>
 </resources>

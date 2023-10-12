@@ -4,4 +4,5 @@
     <string name="welcome_to_smartalert">Smart Alert</string>
     <string name="user">Χρήστης</string>
     <string name="employee">Υπάλληλος</string>
+    <string name="password">Kωδικός</string>
 </resources>
