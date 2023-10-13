@@ -2,6 +2,9 @@ package com.galeos.smartalertv2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -20,6 +23,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
     RadioButton radioButtonUser,radioButtonEmployee;
+    Button signInBtn;
+    EditText passwordEditText,emailEditText;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firestore;
     String isUser;
@@ -33,18 +38,40 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setReferences() {
+        emailEditText = findViewById(R.id.emailEditText);
+        passwordEditText = findViewById(R.id.passwordEditText);
         radioButtonUser = findViewById(R.id.radioButtonUser);
         radioButtonEmployee = findViewById(R.id.radioButtonEmployee);
+        signInBtn = findViewById(R.id.signInBtn);
         //isUser = intent.getStringExtra("isUser");
 
         // Set Log In RadioButton as checked by default
         radioButtonUser.setChecked(true);
 
-        //TODO: Add onbuttonclick -> loginAccountInFirebase
+        signInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginUser();
+            }
+        });
+
+
 
     }
 
-    void loginAccountInFirebase(String email, String password){
+    // TODO: create validateData function
+    private void loginUser() {
+        String email = emailEditText.getText().toString();
+            String password = passwordEditText.getText().toString();
+        /*
+        boolean isValidated = validateData(email,password);
+        if(!isValidated){
+            return;
+        }*/
+        loginAccountInFirebase(email,password);
+    }
+
+    private void loginAccountInFirebase(String email, String password){
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -65,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //TODO: Create UserMainActivity and EmployeeMainAcivity.
-    void checkUserAccessLevel(FirebaseUser firebaseuser){
+    private void checkUserAccessLevel(FirebaseUser firebaseuser){
         DocumentReference df = firestore.collection("users").document(firebaseuser.getUid());
 
         df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
