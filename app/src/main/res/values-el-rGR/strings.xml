@@ -2,8 +2,13 @@
 <resources>
     <string name="app_name">SmartAlert</string>
     <string name="welcome_to_smartalert">Smart Alert</string>
+
     <string name="user">Χρήστης</string>
     <string name="employee">Υπάλληλος</string>
+    <string name="email">Email</string>
     <string name="password">Kωδικός</string>
+
+    <!-- LoginActivity strings -->
     <string name="email_verify">Το email δεν επαληθεύτηκε, Επαληθεύστε το email σας.</string>
+    <string name="Account_doesnt_exist">Ο λογαριασμός δεν υπάρχει</string>
 </resources>

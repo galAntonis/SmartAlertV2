@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name" translatable="false">SmartAlert</string>
     <string name="welcome_to_smartalert">Smart Alert</string>
+
     <string name="user">User</string>
     <string name="employee">Employee</string>
     <string name="email" translatable="false">Email</string>
     <string name="password">Password</string>
+
+    <!-- LoginActivity strings -->
     <string name="email_verify">Email not verified, Please verify your email.</string>
+    <string name="Account_doesnt_exist">Account doesn\'t exist</string>
 </resources>
