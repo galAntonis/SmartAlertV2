@@ -2,6 +2,7 @@ package com.galeos.smartalertv2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -59,15 +60,14 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    // TODO: create validateData function
+
     private void loginUser() {
         String email = emailEditText.getText().toString();
-            String password = passwordEditText.getText().toString();
-        /*
+        String password = passwordEditText.getText().toString();
         boolean isValidated = validateData(email,password);
         if(!isValidated){
             return;
-        }*/
+        }
         loginAccountInFirebase(email,password);
     }
 
@@ -111,5 +111,18 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    //TODO: Do some proper validation maybe
+    boolean validateData(String email, String password) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailEditText.setError(getString(R.string.email_invalid));
+            return false;
+        }
+        if (password.length() < 6) {
+            passwordEditText.setError(getString(R.string.password_invalid));
+            return false;
+        }
+        return true;
     }
 }

@@ -11,4 +11,6 @@
     <!-- LoginActivity strings -->
     <string name="email_verify">Το email δεν επαληθεύτηκε, Επαληθεύστε το email σας.</string>
     <string name="Account_doesnt_exist">Ο λογαριασμός δεν υπάρχει</string>
+    <string name="email_invalid">Το email δεν είναι έγκυρο</string>
+    <string name="password_invalid">Το μήκος του κωδικού πρόσβασης δεν είναι έγκυρο</string>
 </resources>

@@ -10,4 +10,6 @@
     <!-- LoginActivity strings -->
     <string name="email_verify">Email not verified, Please verify your email.</string>
     <string name="Account_doesnt_exist">Account doesn\'t exist</string>
+    <string name="email_invalid">Email is invalid</string>
+    <string name="password_invalid">Password length is invalid</string>
 </resources>
