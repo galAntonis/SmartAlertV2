@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.api.Context;
@@ -25,13 +26,14 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 // TODO: Use Google, Facebook or Twitter as a Login option
+// TODO: Fix the xml
 public class LoginActivity extends AppCompatActivity {
     RadioButton radioButtonUser,radioButtonEmployee;
     Button signInBtn;
     EditText passwordEditText,emailEditText;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firestore;
-    String isUser;
+    Boolean isUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         setReferences();
 
-        //TODO: Check this error-> Default FirebaseApp is not initialized in this process com.galeos.smartalertv2
 
     }
 
@@ -53,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Set Log In RadioButton as checked by default
         radioButtonUser.setChecked(true);
+        isUser = true;
 
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +75,10 @@ public class LoginActivity extends AppCompatActivity {
         if(!isValidated){
             return;
         }
+        if(radioButtonUser.isChecked())
+            isUser = true;
+        else
+            isUser = false;
         loginAccountInFirebase(email,password);
     }
 
@@ -93,20 +99,25 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                System.out.println(e.getMessage());
+            }
         });
     }
 
-    //TODO: Create UserMainActivity and EmployeeMainAcivity.
+    //TODO: Create EmployeeMainAcivity.
     private void checkUserAccessLevel(FirebaseUser firebaseuser){
         DocumentReference df = firestore.collection("users").document(firebaseuser.getUid());
 
         df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.getString("isUser").equals("1") && isUser.equals("1")){
-                    //startActivity(new Intent(LoginActivity.this, UserMainActivity.class));
+                if (documentSnapshot.getBoolean("isUser").equals(true) && isUser.equals(true)){
+                    startActivity(new Intent(LoginActivity.this, UserMainActivity.class));
                     finish();
-                }else if (documentSnapshot.getString("isUser").equals("0") && isUser.equals("0")){
+                }else if (documentSnapshot.getBoolean("isUser").equals(false) && isUser.equals(false)){
                     //startActivity(new Intent(LoginActivity.this, EmployeeMainActivity.class));
                     finish();
                 }
@@ -115,6 +126,11 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
 
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                System.out.println(e.getMessage());
+            }
         });
     }
 
